@@ -51,7 +51,7 @@ const Experience = () => {
               <button
                 key={index}
                 onClick={() => setActiveTab(index)}
-                className={`px-6 py-4 text-left whitespace-nowrap border-b-2 md:border-b-0 md:border-l-2 transition-all duration-300 relative ${
+                className={`px-6 py-4 text-left whitespace-nowrap border-b-2 md:border-b-0 md:border-l-2 transition-[background-color,border-color,color] duration-300 relative ${
                   activeTab === index
                     ? isDark 
                       ? 'text-teal-400 font-medium' 

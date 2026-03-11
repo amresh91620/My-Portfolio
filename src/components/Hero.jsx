@@ -109,7 +109,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#projects"
-              className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-all duration-300 group ${
+              className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 group ${
                 isDark 
                   ? 'bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40' 
                   : 'bg-gradient-to-r from-teal-600 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40'
@@ -128,7 +128,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
               href="/Amresh_Resume_.pdf"
               download="Amresh_Resume.pdf"
-              className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-all duration-300 ${
+              className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,border-color,box-shadow,transform] duration-300 ${
                 isDark 
                   ? 'bg-slate-800/50 text-white border border-slate-700 hover:border-slate-500 shadow-lg' 
                   : 'bg-white text-gray-900 border border-gray-200 shadow-lg hover:shadow-xl'

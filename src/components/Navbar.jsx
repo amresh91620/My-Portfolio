@@ -9,10 +9,17 @@ const Navbar = () => {
   const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -25,7 +32,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 px-6 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 w-full z-50 px-6 transition-[background-color,border-color,box-shadow,padding] duration-300 ${
       isScrolled 
         ? isDark 
           ? 'bg-slate-900/95 backdrop-blur-md shadow-lg py-4 border-b border-slate-800' 
@@ -127,7 +134,7 @@ const Navbar = () => {
                 visible: { opacity: 1, x: 0 }
               }}
               onClick={() => setIsOpen(false)}
-              className={`text-2xl font-serif font-bold transition-all group flex flex-col ${
+              className={`text-2xl font-serif font-bold transition-[color] group flex flex-col ${
                 isDark ? 'text-slate-100 hover:text-blue-400' : 'text-gray-800 hover:text-blue-600'
               }`}
             >
@@ -139,7 +146,7 @@ const Navbar = () => {
               </div>
               
               {/* Animated Underline */}
-              <span className="h-[2px] w-0 bg-blue-500 transition-all duration-300 group-hover:w-12 mt-1" />
+              <span className="h-[2px] w-0 bg-blue-500 transition-[width] duration-300 group-hover:w-12 mt-1" />
             </motion.a>
           ))}
 

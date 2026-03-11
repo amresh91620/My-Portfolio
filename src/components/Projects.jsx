@@ -86,7 +86,7 @@ const Projects = () => {
             <motion.div
               variants={cardVariants}
               key={index}
-              className={`rounded-2xl overflow-hidden group flex flex-col transition-all duration-300 ${
+              className={`rounded-2xl overflow-hidden group flex flex-col transition-[background-color,border-color,box-shadow] duration-300 ${
                 isDark 
                   ? 'bg-slate-800/40 backdrop-blur-md border border-slate-700/50 hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/10' 
                   : 'bg-white border border-gray-200 shadow-xl shadow-gray-200/50 hover:border-teal-400/50 hover:shadow-2xl hover:shadow-teal-500/10'

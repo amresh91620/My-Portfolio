@@ -139,7 +139,7 @@ const Contact = () => {
                   key={idx}
                   variants={itemVariants}
                   whileHover={{ x: 10, scale: 1.02 }}
-                  className={`group flex items-start gap-5 p-6 rounded-2xl border transition-all duration-300 ${
+                  className={`group flex items-start gap-5 p-6 rounded-2xl border transition-[background-color,border-color,box-shadow,transform] duration-300 ${
                     isDark 
                       ? 'bg-slate-900/50 border-white/5 hover:border-teal-500/50 hover:bg-slate-900/80 shadow-2xl' 
                       : 'bg-white border-gray-100 hover:border-teal-500/30 shadow-xl'
@@ -184,7 +184,7 @@ const Contact = () => {
                     href={social.href}
                     whileHover={{ y: -5, scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`p-4 rounded-xl border transition-all ${
+                    className={`p-4 rounded-xl border transition-[background-color,border-color,color,transform] ${
                       isDark 
                         ? 'bg-slate-900/50 border-white/5 text-slate-400 hover:text-teal-400 hover:border-teal-500/50' 
                         : 'bg-white border-gray-100 text-gray-500 hover:text-teal-600 hover:border-teal-500/30 shadow-lg'
@@ -226,7 +226,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-all ${
+                      className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-[border-color] ${
                         isDark ? 'border-white/10 text-white focus:border-teal-500' : 'border-gray-200 text-gray-900 focus:border-teal-500'
                       }`}
                       placeholder="Enter your name"
@@ -243,7 +243,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-all ${
+                      className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-[border-color] ${
                         isDark ? 'border-white/10 text-white focus:border-teal-500' : 'border-gray-200 text-gray-900 focus:border-teal-500'
                       }`}
                       placeholder="name@email.com"
@@ -262,7 +262,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-all ${
+                    className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-[border-color] ${
                       isDark ? 'border-white/10 text-white focus:border-teal-500' : 'border-gray-200 text-gray-900 focus:border-teal-500'
                     }`}
                     placeholder="Project Inquiry"
@@ -280,7 +280,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="4"
-                    className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-all resize-none ${
+                    className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-[border-color] resize-none ${
                       isDark ? 'border-white/10 text-white focus:border-teal-500' : 'border-gray-200 text-gray-900 focus:border-teal-500'
                     }`}
                     placeholder="Tell me about your amazing idea..."
@@ -291,7 +291,7 @@ const Contact = () => {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-teal-500 to-blue-600 text-white font-bold py-5 rounded-2xl shadow-xl hover:shadow-blue-500/40 transition-all duration-300 flex items-center justify-center gap-3 group"
+                  className="w-full bg-gradient-to-r from-teal-500 to-blue-600 text-white font-bold py-5 rounded-2xl shadow-xl hover:shadow-blue-500/40 transition-[background-color,box-shadow,transform] duration-300 flex items-center justify-center gap-3 group"
                 >
                   Send Message
                   <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
