@@ -118,7 +118,7 @@ const About = () => {
                   isDark ? 'from-teal-900/80 to-transparent' : 'from-teal-600/50 to-transparent'
                 }`}></div>
                 <img 
-                  src="public/Me.jpeg" 
+                  src="/Me.jpeg" 
                   alt="Profile" 
                   className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                 />

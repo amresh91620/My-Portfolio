@@ -95,7 +95,7 @@ const Experience = () => {
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
                 transition={{ duration: 0.3 }}
-                className="absolute inset-0"
+                className=""
               >
                 <h3 className={`font-serif text-3xl font-bold mb-3 ${
                   isDark ? 'text-white' : 'text-gray-900'
