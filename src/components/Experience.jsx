@@ -11,7 +11,7 @@ const Experience = () => {
     {
       company: 'Technical core engineers (tecoreng), Ahmedabad ',
       position: 'Full Stack Developer intern',
-      duration: 'Dec 2024 - Present',
+      duration: 'Dec 2025 - Present',
       responsibilities: [
         'Developed and maintained web application features using React, Node.js, and REST APIs.',
         'Implemented frontend UI components and responsive layouts for better user experience.',
