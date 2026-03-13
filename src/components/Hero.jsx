@@ -126,8 +126,8 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.05, backgroundColor: isDark ? 'rgba(30, 41, 59, 0.8)' : 'rgba(248, 250, 252, 1)' }}
               whileTap={{ scale: 0.95 }}
-              href="/Amresh_Resume_.pdf"
-              download="Amresh_Resume.pdf"
+              href="/Amresh_Gond_Resume.pdf"
+              download="Amresh_Gond_Resume.pdf"
               className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,border-color,box-shadow,transform] duration-300 ${
                 isDark 
                   ? 'bg-slate-800/50 text-white border border-slate-700 hover:border-slate-500 shadow-lg' 
