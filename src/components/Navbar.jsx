@@ -79,7 +79,7 @@ const Navbar = () => {
               className={`transition-colors duration-300 text-sm tracking-wide group ${
                 activeSection === link.section
                   ? 'text-rose-300'
-                  : 'text-slate-400 hover:text-orange-300'
+                  : 'text-slate-400 hover:text-amber-300'
               }`}
             >
               <span className="gradient-text text-xs mr-1">{link.number}</span>
@@ -92,7 +92,7 @@ const Navbar = () => {
         <div className="md:hidden flex items-center gap-3">
           <button
             className={`focus:outline-none transition-colors ${
-              isDark ? 'text-slate-400 hover:text-orange-300' : 'text-gray-600 hover:text-orange-600'
+              isDark ? 'text-slate-400 hover:text-amber-300' : 'text-gray-600 hover:text-amber-600'
             }`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle navigation menu"
@@ -157,8 +157,8 @@ const Navbar = () => {
                           ? 'text-rose-300'
                           : 'text-rose-700'
                         : isDark
-                          ? 'text-slate-100 hover:text-orange-300'
-                          : 'text-gray-800 hover:text-orange-600'
+                          ? 'text-slate-100 hover:text-amber-300'
+                          : 'text-gray-800 hover:text-amber-600'
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -167,7 +167,7 @@ const Navbar = () => {
                       </span>
                       {'>'} {link.command}
                     </div>
-                    <span className="h-0.5 w-0 bg-orange-400 transition-[width] duration-300 group-hover:w-12 mt-1" />
+                    <span className="h-0.5 w-0 bg-amber-400 transition-[width] duration-300 group-hover:w-12 mt-1" />
                   </motion.a>
                 ))}
               </motion.div>

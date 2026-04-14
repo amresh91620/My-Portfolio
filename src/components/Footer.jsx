@@ -23,7 +23,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className={`border-t py-16 px-6 transition-colors duration-500 ${
+    <footer className={`section-shell border-t transition-colors duration-500 ${
       isDark ? 'bg-slate-950 border-white/5' : 'bg-gray-100 border-gray-200'
     }`}>
       <div className="container mx-auto max-w-7xl">
@@ -58,7 +58,7 @@ const Footer = () => {
                     href={link.href}
                     whileHover={{ x: 5 }}
                     className={`text-sm font-medium transition-colors inline-block ${
-                      isDark ? 'text-slate-400 hover:text-teal-400' : 'text-gray-600 hover:text-teal-600'
+                      isDark ? 'text-slate-400 hover:text-amber-300' : 'text-gray-600 hover:text-amber-600'
                     }`}
                   >
                     {link.name}
@@ -81,10 +81,10 @@ const Footer = () => {
                   aria-label={social.label}
                   whileHover={{ y: -5, scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`p-3 rounded-xl border transition-all ${
+                  className={`terminal-card terminal-card-hover p-3 rounded-xl border transition-all ${
                     isDark 
-                      ? 'bg-slate-900 border-white/5 text-slate-400 hover:text-teal-400 hover:border-teal-500/50' 
-                      : 'bg-white border-gray-200 text-gray-500 hover:text-teal-600 hover:border-teal-500/30 shadow-sm'
+                      ? 'text-slate-300 hover:text-amber-300' 
+                      : 'text-gray-500 hover:text-amber-600 shadow-sm'
                   }`}
                 >
                   {social.icon}

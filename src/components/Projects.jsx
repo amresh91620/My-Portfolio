@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Folder, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { MOTION } from '../constants/motion';
 
 const Projects = () => {
   const { isDark } = useTheme();
@@ -106,15 +107,15 @@ const Projects = () => {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { type: "spring", stiffness: 100, damping: 20 }
+      transition: MOTION.cardReveal
     }
   };
 
   return (
-    <section id="projects" className="py-24 px-6 relative">
+    <section id="projects" className="section-shell relative">
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
         <div className={`absolute top-1/4 right-1/4 w-150 h-150 rounded-full blur-[120px] ${
-          isDark ? 'bg-indigo-500/10' : 'bg-indigo-400/10'
+          isDark ? 'bg-rose-500/12' : 'bg-rose-400/12'
         }`} />
       </div>
 
@@ -123,7 +124,7 @@ const Projects = () => {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, type: "spring" }}
+          transition={MOTION.sectionReveal}
           className="mb-16"
         >
           <div className="ansi-header">
@@ -146,10 +147,10 @@ const Projects = () => {
               variants={cardVariants}
               key={index}
               onClick={() => setActiveProjectIndex(index)}
-              className={`rounded-2xl overflow-hidden group flex flex-col transition-[background-color,border-color,box-shadow] duration-300 ${
+              className={`terminal-card terminal-card-hover rounded-2xl overflow-hidden group flex flex-col transition-[background-color,border-color,box-shadow] duration-300 ${
                 isDark 
-                  ? 'bg-slate-800/40 backdrop-blur-md border border-slate-700/50 hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/10' 
-                  : 'bg-white border border-gray-200 shadow-xl shadow-gray-200/50 hover:border-teal-400/50 hover:shadow-2xl hover:shadow-teal-500/10'
+                  ? 'text-slate-200' 
+                  : 'text-gray-700'
               } cursor-pointer`}
             >
               <div className="p-8 flex flex-col h-full relative">
@@ -159,19 +160,19 @@ const Projects = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    <Folder size={40} strokeWidth={1.5} className={isDark ? 'text-teal-400' : 'text-teal-600'} />
+                    <Folder size={40} strokeWidth={1.5} className={isDark ? 'text-rose-300' : 'text-rose-600'} />
                   </motion.div>
                   <div className="flex gap-3">
                     {project.github && project.github !== '#' && (
                       <a href={project.github} onClick={(event) => event.stopPropagation()} className={`transition-colors transform hover:scale-110 ${
-                        isDark ? 'text-slate-400 hover:text-teal-400' : 'text-gray-500 hover:text-teal-600'
+                        isDark ? 'text-slate-400 hover:text-amber-300' : 'text-gray-500 hover:text-amber-600'
                       }`} target="_blank" rel="noopener noreferrer">
                         <Github size={22} />
                       </a>
                     )}
                     {(project.live || project.external) && (project.live !== '#' || project.external !== '#') && (
                       <a href={project.live || project.external} onClick={(event) => event.stopPropagation()} className={`transition-colors transform hover:scale-110 ${
-                        isDark ? 'text-slate-400 hover:text-teal-400' : 'text-gray-500 hover:text-teal-600'
+                        isDark ? 'text-slate-400 hover:text-amber-300' : 'text-gray-500 hover:text-amber-600'
                       }`} target="_blank" rel="noopener noreferrer">
                         <ExternalLink size={22} />
                       </a>
@@ -181,7 +182,7 @@ const Projects = () => {
                 
                 {/* Title */}
                 <h3 className={`font-serif text-2xl font-bold mb-4 transition-colors ${
-                  isDark ? 'text-white group-hover:text-teal-400' : 'text-gray-900 group-hover:text-teal-600'
+                  isDark ? 'text-white group-hover:text-rose-300' : 'text-gray-900 group-hover:text-rose-600'
                 }`}>
                   {project.title}
                 </h3>
@@ -200,8 +201,8 @@ const Projects = () => {
                       key={i} 
                       className={`text-xs font-mono px-3 py-1 rounded-full ${
                         isDark 
-                          ? 'bg-slate-900/50 text-teal-400 border border-slate-700' 
-                          : 'bg-teal-50 text-teal-700 border border-teal-100'
+                          ? 'bg-slate-900/50 text-amber-300 border border-slate-700' 
+                          : 'bg-amber-50 text-amber-700 border border-amber-100'
                       }`}
                     >
                       {tech}

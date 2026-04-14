@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Database, Server, Code, Layers, GitBranch } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { MOTION } from '../constants/motion';
 
 const Skills = () => {
   const { isDark } = useTheme();
@@ -54,16 +55,16 @@ const Skills = () => {
       opacity: 1, 
       y: 0, 
       scale: 1,
-      transition: { type: "spring", stiffness: 100, damping: 12 }
+      transition: MOTION.cardReveal
     }
   };
 
   return (
-    <section id="skills" className="py-24 px-6 relative">
+    <section id="skills" className="section-shell relative">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className={`absolute top-1/2 left-1/4 w-96 h-96 rounded-full blur-[100px] ${
-          isDark ? 'bg-teal-500/5' : 'bg-teal-400/10'
+          isDark ? 'bg-rose-500/8' : 'bg-rose-400/12'
         }`} />
       </div>
 
@@ -72,7 +73,7 @@ const Skills = () => {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, type: "spring" }}
+          transition={MOTION.sectionReveal}
           className="mb-16"
         >
           <div className="ansi-header">
@@ -99,33 +100,33 @@ const Skills = () => {
                 scale: 1.03,
                 rotateX: 2,
                 rotateY: -2,
-                transition: { type: "spring", stiffness: 300, damping: 20 }
+                transition: MOTION.hoverSpring
               }}
               style={{ perspective: 1000 }}
-              className={`relative rounded-2xl p-8 transition-colors duration-300 group overflow-hidden ${
+              className={`terminal-card terminal-card-hover relative rounded-2xl p-8 transition-colors duration-300 group overflow-hidden ${
                 isDark 
-                  ? 'bg-slate-800/40 backdrop-blur-md border border-slate-700/50 hover:bg-slate-800/80 hover:border-teal-500/50 shadow-lg' 
-                  : 'bg-white border border-gray-200 hover:border-teal-400/50 shadow-xl shadow-gray-200/50'
+                  ? 'text-slate-200' 
+                  : 'text-gray-700'
               }`}
             >
               {/* Animated background glow on hover */}
               <div className={`absolute -inset-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10 ${
-                isDark ? 'bg-linear-to-br from-teal-500/20 to-blue-500/20' : 'bg-linear-to-br from-teal-500/10 to-blue-500/10'
+                isDark ? 'bg-linear-to-br from-rose-500/20 to-orange-500/20' : 'bg-linear-to-br from-rose-500/10 to-orange-500/10'
               }`} />
               
               <div className="relative z-10 w-full h-full flex flex-col">
                 <motion.div 
                   whileHover={{ rotate: 360, scale: 1.2 }}
-                  transition={{ duration: 0.8, type: "spring" }}
-                  className={`mb-6 inline-flex p-4 rounded-xl shadow-inner ${
-                    isDark ? 'bg-slate-900/80 text-teal-400' : 'bg-teal-50 text-teal-600'
+                  transition={MOTION.hoverSpring}
+                  className={`terminal-icon-box mb-6 inline-flex p-4 rounded-xl shadow-inner ${
+                    isDark ? 'text-amber-300' : 'text-rose-600'
                   }`}
                 >
                   {category.icon}
                 </motion.div>
                 
                 <h3 className={`font-serif text-2xl font-bold mb-6 transition-colors ${
-                  isDark ? 'text-white group-hover:text-teal-400' : 'text-gray-900 group-hover:text-teal-600'
+                  isDark ? 'text-white group-hover:text-rose-300' : 'text-gray-900 group-hover:text-rose-600'
                 }`}>
                   {category.title}
                 </h3>
@@ -136,12 +137,12 @@ const Skills = () => {
                       key={skill}
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.1 * i, duration: 0.3 }}
-                      whileHover={{ scale: 1.1, backgroundColor: isDark ? '#14b8a6' : '#0d9488', color: '#fff' }}
-                      className={`text-sm px-4 py-1.5 rounded-full transition-colors duration-300 cursor-default font-medium ${
+                      transition={{ delay: 0.08 * i, duration: 0.24 }}
+                      whileHover={{ scale: 1.08, backgroundColor: '#7a1c27', color: '#fff3e8' }}
+                      className={`terminal-chip text-sm px-4 py-1.5 rounded-full transition-colors duration-300 cursor-default font-medium ${
                         isDark 
-                          ? 'bg-slate-900/80 border border-slate-700 text-slate-300' 
-                          : 'bg-gray-50 border border-gray-200 text-gray-600'
+                          ? 'text-slate-200' 
+                          : 'text-rose-800'
                       }`}
                     >
                       {skill}

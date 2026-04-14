@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, Terminal, Mouse } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { MOTION } from '../constants/motion';
 
 const Hero = () => {
   const { isDark } = useTheme();
@@ -32,7 +33,7 @@ const Hero = () => {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { type: "spring", stiffness: 50, damping: 15 }
+      transition: MOTION.cardReveal
     }
   };
 
@@ -124,7 +125,7 @@ const Hero = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[100px] ${
-            isDark ? 'bg-teal-500/10' : 'bg-teal-400/20'
+            isDark ? 'bg-rose-500/14' : 'bg-rose-400/20'
           }`}
           animate={{ 
             scale: [1, 1.2, 1],
@@ -136,7 +137,7 @@ const Hero = () => {
         />
         <motion.div
           className={`absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[120px] ${
-            isDark ? 'bg-indigo-500/10' : 'bg-indigo-400/20'
+            isDark ? 'bg-orange-500/12' : 'bg-orange-400/18'
           }`}
           animate={{ 
             scale: [1.2, 1, 1.2],
@@ -170,7 +171,7 @@ const Hero = () => {
               <motion.span 
                 className="gradient-text inline-block"
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                transition={MOTION.hoverSpring}
               >
                 I am Amresh Gond;
               </motion.span>
@@ -200,11 +201,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#projects"
-              className={`command-btn inline-flex shrink-0 items-center justify-center w-auto whitespace-nowrap gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 group ${
-                isDark 
-                    ? 'bg-linear-to-r from-teal-500 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40' 
-                    : 'bg-linear-to-r from-teal-600 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40'
-              }`}
+              className="command-btn inline-flex shrink-0 items-center justify-center w-auto whitespace-nowrap gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 group"
             >
               C:\&gt; run projects.exe
               <motion.span
@@ -218,11 +215,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
               href="/Amresh_Gond_Resume.pdf"
               download="Amresh_Gond_Resume.pdf"
-              className={`command-btn command-btn-secondary inline-flex shrink-0 items-center justify-center w-auto whitespace-nowrap gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base rounded-xl font-bold transition-[background-color,border-color,box-shadow,transform] duration-300 ${
-                isDark 
-                  ? 'bg-slate-800/50 text-white border border-slate-700 hover:border-slate-500 shadow-lg' 
-                  : 'bg-white text-gray-900 border border-gray-200 shadow-lg hover:shadow-xl'
-              }`}
+              className="command-btn command-btn-secondary inline-flex shrink-0 items-center justify-center w-auto whitespace-nowrap gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base rounded-xl font-bold transition-[background-color,border-color,box-shadow,transform] duration-300"
             >
               <Download size={20} className="group-hover:-translate-y-1 transition-transform" />
               C:\&gt; open resume.txt
@@ -235,12 +228,12 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.8, type: "spring", bounce: 0.4, delay: 0.5 }}
+          transition={{ ...MOTION.sectionReveal, delay: 0.2 }}
           className="relative w-full lg:justify-self-end mt-6 md:mt-8 lg:mt-0 lg:pt-5"
         >
           <motion.div 
             animate={{ y: [-4, 4, -4] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            transition={MOTION.floatLoop}
             className="w-full max-w-2xl mx-auto lg:ml-auto"
           >
             <div className="hero-terminal-shell">
@@ -310,7 +303,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.1, duration: 0.5 }}
         className={`absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2 text-xs tracking-[0.2em] uppercase ${
-          isDark ? 'text-slate-400 hover:text-teal-300' : 'text-gray-500 hover:text-teal-700'
+          isDark ? 'text-slate-400 hover:text-amber-300' : 'text-gray-500 hover:text-amber-700'
         } transition-colors`}
       >
         <Mouse size={14} />

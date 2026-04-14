@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
+import { MOTION } from '../constants/motion';
 
 const About = () => {
   const { isDark } = useTheme();
@@ -27,12 +28,12 @@ const About = () => {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.5 }
+      transition: MOTION.cardReveal
     }
   };
 
   return (
-    <section id="about" className={`py-24 px-6 transition-colors duration-300 ${
+    <section id="about" className={`section-shell transition-colors duration-300 ${
       isDark ? 'bg-slate-900/50 text-slate-400' : 'bg-white text-gray-600'
     }`}>
       <div className="container mx-auto max-w-7xl">
@@ -40,7 +41,7 @@ const About = () => {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, type: "spring" }}
+          transition={MOTION.sectionReveal}
           className="mb-16"
         >
           <div className="ansi-header">
@@ -66,8 +67,8 @@ const About = () => {
             </motion.p>
             <motion.p variants={itemVariants}>
               Today, I specialize in the MERN stack (MongoDB, Express, React, Node.js) along with SQL databases like PostgreSQL. 
-              I take pride in architecting end-to-end solutions—from intuitive user interfaces like the <span className={`font-semibold ${isDark ? 'text-teal-400' : 'text-teal-600'}`}>BookHive</span> online bookstore,
-              to robust backends and role-based systems like my <span className={`font-semibold ${isDark ? 'text-teal-400' : 'text-teal-600'}`}>Blog Web Application</span>.
+              I take pride in architecting end-to-end solutions—from intuitive user interfaces like the <span className={`font-semibold ${isDark ? 'text-rose-300' : 'text-rose-600'}`}>BookHive</span> online bookstore,
+              to robust backends and role-based systems like my <span className={`font-semibold ${isDark ? 'text-rose-300' : 'text-rose-600'}`}>Blog Web Application</span>.
             </motion.p>
             <motion.p variants={itemVariants}>
               Beyond web development, I also have experience building desktop solutions like a Super Market Management 
@@ -83,10 +84,10 @@ const About = () => {
                 {skills.map((skill, index) => (
                   <motion.li 
                     key={index} 
-                    whileHover={{ x: 5, color: isDark ? '#2dd4bf' : '#0d9488' }}
+                    whileHover={{ x: 5, color: isDark ? '#fdba74' : '#c2410c' }}
                     className="flex items-center gap-2 cursor-default transition-colors"
                   >
-                    <span className={isDark ? 'text-teal-400' : 'text-teal-600'}>▹</span> {skill}
+                    <span className={isDark ? 'text-amber-300' : 'text-amber-600'}>▹</span> {skill}
                   </motion.li>
                 ))}
               </ul>
@@ -97,22 +98,22 @@ const About = () => {
             initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, type: "spring" }}
+            transition={MOTION.sectionReveal}
             className="lg:w-2/5 flex justify-center mt-10 lg:mt-0"
           >
             <motion.div 
               whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              transition={MOTION.hoverSpring}
               className="relative group w-72 h-72 md:w-80 md:h-80"
             >
               <div className={`absolute -inset-4 border-2 rounded-xl translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300 ${
-                isDark ? 'border-teal-500/50' : 'border-teal-600/50'
+                isDark ? 'border-rose-500/50' : 'border-rose-600/50'
               }`}></div>
               <div className={`relative w-full h-full rounded-xl overflow-hidden ${
-                isDark ? 'bg-teal-500/20' : 'bg-teal-600/20'
+                isDark ? 'bg-rose-500/20' : 'bg-rose-600/20'
               }`}>
                 <div className={`absolute inset-0 bg-linear-to-t mix-blend-overlay z-10 transition-opacity duration-300 group-hover:opacity-0 ${
-                  isDark ? 'from-teal-900/80 to-transparent' : 'from-teal-600/50 to-transparent'
+                  isDark ? 'from-rose-900/80 to-transparent' : 'from-rose-600/50 to-transparent'
                 }`}></div>
                 <img 
                   src="/Me.jpeg" 

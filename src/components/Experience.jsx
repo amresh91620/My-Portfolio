@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase, Calendar } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { MOTION } from '../constants/motion';
 
 const Experience = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -23,7 +24,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className={`py-24 px-6 transition-colors duration-300 ${
+    <section id="experience" className={`section-shell transition-colors duration-300 ${
       isDark ? 'bg-slate-900/30' : 'bg-gray-50'
     }`}>
       <div className="container mx-auto max-w-7xl">
@@ -31,7 +32,7 @@ const Experience = () => {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, type: "spring" }}
+          transition={MOTION.sectionReveal}
           className="mb-16"
         >
           <div className="ansi-header">
@@ -52,8 +53,8 @@ const Experience = () => {
                 className={`px-6 py-4 text-left whitespace-nowrap border-b-2 md:border-b-0 md:border-l-2 transition-[background-color,border-color,color] duration-300 relative ${
                   activeTab === index
                     ? isDark 
-                      ? 'text-teal-400 font-medium' 
-                      : 'text-teal-600 font-medium'
+                      ? 'text-rose-300 font-medium' 
+                      : 'text-rose-600 font-medium'
                     : isDark
                       ? 'border-slate-800 text-slate-500 hover:text-slate-300 hover:bg-slate-800/30'
                       : 'border-gray-200 text-gray-500 hover:text-gray-700 hover:bg-gray-100/50'
@@ -64,9 +65,9 @@ const Experience = () => {
                   <motion.div 
                     layoutId="activeTab"
                     className={`absolute bottom-0 md:bottom-auto md:left-0 md:top-0 h-0.5 w-full md:w-0.5 md:h-full ${
-                      isDark ? 'bg-teal-500' : 'bg-teal-500'
+                      isDark ? 'bg-rose-500' : 'bg-rose-500'
                     }`}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    transition={MOTION.hoverSpring}
                   />
                 )}
                 {/* Animated background glow */}
@@ -74,9 +75,9 @@ const Experience = () => {
                   <motion.div 
                     layoutId="activeTabBg"
                     className={`absolute inset-0 -z-10 ${
-                      isDark ? 'bg-teal-500/10' : 'bg-teal-50'
+                      isDark ? 'bg-rose-500/10' : 'bg-rose-50'
                     }`}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    transition={MOTION.hoverSpring}
                   />
                 )}
                 <span className="relative z-10">{exp.company.split(',')[0]}</span>
@@ -92,7 +93,7 @@ const Experience = () => {
                 initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.24 }}
                 className=""
               >
                 <h3 className={`font-serif text-3xl font-bold mb-3 ${
@@ -103,7 +104,7 @@ const Experience = () => {
                 
                 <div className="flex flex-wrap gap-4 mb-8">
                   <p className={`flex items-center gap-2 font-medium ${
-                    isDark ? 'text-teal-400' : 'text-teal-600'
+                    isDark ? 'text-rose-300' : 'text-rose-600'
                   }`}>
                     <Briefcase size={18} />
                     {experiences[activeTab].company}
@@ -123,12 +124,12 @@ const Experience = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + (idx * 0.1) }}
                       key={idx} 
-                      className={`flex gap-4 p-3 rounded-lg transition-colors ${
+                      className={`terminal-card terminal-card-hover flex gap-4 p-3 rounded-lg transition-colors ${
                         isDark ? 'text-slate-300 hover:bg-slate-800/50' : 'text-gray-600 hover:bg-white/60'
                       }`}
                     >
                       <span className={`mt-1 shrink-0 ${
-                        isDark ? 'text-teal-400' : 'text-teal-500'
+                        isDark ? 'text-amber-300' : 'text-amber-600'
                       }`}>▹</span>
                       <span className="leading-relaxed">{resp}</span>
                     </motion.li>

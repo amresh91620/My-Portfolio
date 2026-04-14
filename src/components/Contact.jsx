@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Linkedin, Github } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { MOTION } from '../constants/motion';
 
 const Contact = () => {
   const { isDark } = useTheme();
@@ -86,7 +87,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className={`py-24 px-6 relative overflow-hidden transition-colors duration-500 ${
+    <section id="contact" className={`section-shell relative overflow-hidden transition-colors duration-500 ${
       isDark ? 'bg-slate-950' : 'bg-gray-50'
     }`}>
       {/* Animated Hero-style background blobs */}
@@ -122,6 +123,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={MOTION.sectionReveal}
           className="mb-16"
         >
           <div className="ansi-header">
@@ -161,10 +163,11 @@ const Contact = () => {
                   key={idx}
                   variants={itemVariants}
                   whileHover={{ x: 10, scale: 1.02 }}
-                  className={`group flex items-start gap-5 p-6 rounded-2xl border transition-[background-color,border-color,box-shadow,transform] duration-300 ${
+                  transition={MOTION.hoverSpring}
+                  className={`terminal-card terminal-card-hover group flex items-start gap-5 p-6 rounded-2xl border transition-[background-color,border-color,box-shadow,transform] duration-300 ${
                     isDark 
-                      ? 'bg-slate-900/50 border-white/5 hover:border-rose-500/50 hover:bg-slate-900/80 shadow-2xl' 
-                      : 'bg-white border-gray-100 hover:border-rose-500/30 shadow-xl'
+                      ? 'text-slate-200' 
+                      : 'text-gray-700'
                   }`}
                 >
                   <div className={`p-3 rounded-xl ${
@@ -224,7 +227,7 @@ const Contact = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, type: "spring" }}
+            transition={MOTION.sectionReveal}
             className={`lg:col-span-7 relative p-1 rounded-3xl group overflow-hidden ${
               isDark ? 'bg-white/5' : 'bg-black/5'
             }`}

@@ -9,6 +9,10 @@
   --accent-3: #ffce73;
   --crt-bg: #050508;
   --crt-text: #d8dde6;
+  --crt-border: rgba(255, 92, 104, 0.58);
+  --crt-panel: rgba(14, 11, 14, 0.96);
+  --crt-panel-strong: rgba(10, 8, 11, 0.98);
+  --crt-accent-glow: rgba(255, 104, 118, 0.2);
 }
 
 html {
@@ -27,7 +31,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-shadow: 0 0 6px rgba(255, 120, 132, 0.2);
+  text-shadow: 0 0 5px var(--crt-accent-glow);
 }
 
 h1,
@@ -164,8 +168,8 @@ h6 {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  border: 1px solid rgba(255, 82, 95, 0.55);
-  background: rgba(14, 12, 14, 0.95);
+  border: 1px solid var(--crt-border);
+  background: var(--crt-panel);
   box-shadow: inset 0 0 0 1px rgba(98, 33, 42, 0.4);
   padding: 0.8rem 1rem;
   position: relative;
@@ -197,9 +201,40 @@ h6 {
   line-height: 1;
 }
 
+.section-shell {
+  padding-block: clamp(4rem, 8vw, 6rem);
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+}
+
+.terminal-card {
+  border: 1px solid rgba(255, 92, 104, 0.42);
+  background: rgba(13, 10, 13, 0.94);
+  box-shadow: inset 0 0 0 1px rgba(255, 92, 104, 0.1);
+}
+
+.terminal-card-hover {
+  transition: border-color 0.24s ease, background-color 0.24s ease, transform 0.24s ease;
+}
+
+.terminal-card-hover:hover {
+  border-color: rgba(255, 124, 86, 0.68);
+  background: rgba(18, 12, 15, 0.98);
+}
+
+.terminal-chip {
+  border: 1px solid rgba(255, 124, 86, 0.42);
+  background: rgba(20, 13, 15, 0.95);
+  color: #ffd7c2;
+}
+
+.terminal-icon-box {
+  border: 1px solid rgba(255, 92, 104, 0.36);
+  background: rgba(18, 12, 15, 0.95);
+}
+
 .command-btn {
-  border: 1px solid rgba(255, 96, 108, 0.7) !important;
-  background: rgba(15, 12, 14, 0.96) !important;
+  border: 1px solid var(--crt-border) !important;
+  background: var(--crt-panel) !important;
   color: #ffd0d4 !important;
   font-family: var(--font-sans);
   letter-spacing: 0.02em;
@@ -346,14 +381,14 @@ h6 {
 }
 
 .live-terminal {
-  border: 1px solid rgba(255, 92, 104, 0.65);
-  background: rgba(10, 8, 11, 0.98);
+  border: 1px solid var(--crt-border);
+  background: var(--crt-panel-strong);
   padding: 0.7rem;
 }
 
 .hero-terminal-shell {
-  border: 1px solid rgba(255, 92, 104, 0.52);
-  background: rgba(8, 6, 9, 0.95);
+  border: 1px solid var(--crt-border);
+  background: rgba(8, 6, 9, 0.96);
   box-shadow: 0 0 0 1px rgba(255, 92, 104, 0.2), 0 12px 34px rgba(0, 0, 0, 0.45);
   padding: 0.7rem;
 }
@@ -481,8 +516,8 @@ h6 {
   width: min(1080px, 100%);
   max-height: 92vh;
   overflow: auto;
-  border: 1px solid rgba(255, 92, 104, 0.68);
-  background: rgba(12, 10, 12, 0.98);
+  border: 1px solid var(--crt-border);
+  background: var(--crt-panel-strong);
 }
 
 .project-debug-header {
