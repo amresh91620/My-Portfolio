@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 
@@ -8,14 +8,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [scrollProgress, setScrollProgress] = useState(0);
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark } = useTheme();
 
   const navLinks = [
-    { name: 'About', href: '#about', number: '01', section: 'about' },
-    { name: 'Skills', href: '#skills', number: '02', section: 'skills' },
-    { name: 'Experience', href: '#experience', number: '03', section: 'experience' },
-    { name: 'Projects', href: '#projects', number: '04', section: 'projects' },
-    { name: 'Contact', href: '#contact', number: '05', section: 'contact' },
+    { name: 'about', href: '#about', number: '01', section: 'about', command: 'goto about' },
+    { name: 'skills', href: '#skills', number: '02', section: 'skills', command: 'goto skills' },
+    { name: 'experience', href: '#experience', number: '03', section: 'experience', command: 'goto experience' },
+    { name: 'projects', href: '#projects', number: '04', section: 'projects', command: 'goto projects' },
+    { name: 'contact', href: '#contact', number: '05', section: 'contact', command: 'goto contact' },
   ];
 
   useEffect(() => {
@@ -60,10 +60,8 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 px-6 transition-[background-color,border-color,box-shadow,padding] duration-300 ${
       isScrolled 
-        ? isDark 
-          ? 'bg-slate-900/95 backdrop-blur-md shadow-lg py-4 border-b border-slate-800' 
-          : 'bg-white/95 backdrop-blur-md shadow-md py-4 border-b border-gray-200'
-        : 'bg-transparent py-6'
+        ? 'bg-[#0d0b10]/95 backdrop-blur-md shadow-lg py-4 border-b border-rose-900/60'
+        : 'bg-[#0d0b10]/88 py-5 border-b border-rose-950/50'
     }`}>
       <div className="container mx-auto max-w-7xl flex justify-between items-center">
         <a href="#" className={`font-serif text-2xl font-bold tracking-widest transition-colors ${
@@ -80,50 +78,21 @@ const Navbar = () => {
               href={link.href}
               className={`transition-colors duration-300 text-sm tracking-wide group ${
                 activeSection === link.section
-                  ? isDark
-                    ? 'text-teal-300'
-                    : 'text-teal-700'
-                  : isDark
-                    ? 'text-slate-400 hover:text-blue-400'
-                    : 'text-gray-600 hover:text-blue-600'
+                  ? 'text-rose-300'
+                  : 'text-slate-400 hover:text-orange-300'
               }`}
             >
-              <span className="gradient-text text-xs mr-1">{link.number}.</span>
-              {link.name}
+              <span className="gradient-text text-xs mr-1">{link.number}</span>
+              {'>'} {link.command}
             </a>
           ))}
-          
-          {/* Theme Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            className={`p-2 rounded-lg transition-all duration-300 ${
-              isDark 
-                ? 'bg-slate-800 text-yellow-400 hover:bg-slate-700' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
-            }`}
-            aria-label="Toggle theme"
-          >
-            {isDark ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-3">
           <button
-            onClick={toggleTheme}
-            className={`p-2 rounded-lg transition-all duration-300 ${
-              isDark 
-                ? 'bg-slate-800 text-yellow-400' 
-                : 'bg-gray-100 text-gray-700 border border-gray-200'
-            }`}
-            aria-label="Toggle theme"
-          >
-            {isDark ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-          
-          <button
             className={`focus:outline-none transition-colors ${
-              isDark ? 'text-slate-400 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
+              isDark ? 'text-slate-400 hover:text-orange-300' : 'text-gray-600 hover:text-orange-600'
             }`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle navigation menu"
@@ -134,7 +103,9 @@ const Navbar = () => {
       </div>
 
       <motion.div
-        className="absolute bottom-0 left-0 h-0.5 bg-linear-to-r from-teal-500 via-blue-500 to-amber-500"
+        className={`absolute bottom-0 left-0 h-0.5 bg-linear-to-r from-rose-500 via-orange-500 to-amber-400 transition-opacity duration-300 ${
+          isScrolled ? 'opacity-100' : 'opacity-0'
+        }`}
         animate={{ width: `${scrollProgress}%` }}
         transition={{ type: 'spring', stiffness: 120, damping: 25 }}
       />
@@ -183,20 +154,20 @@ const Navbar = () => {
                     className={`text-2xl font-serif font-bold transition-[color] group flex flex-col ${
                       activeSection === link.section
                         ? isDark
-                          ? 'text-teal-300'
-                          : 'text-teal-700'
+                          ? 'text-rose-300'
+                          : 'text-rose-700'
                         : isDark
-                          ? 'text-slate-100 hover:text-blue-400'
-                          : 'text-gray-800 hover:text-blue-600'
+                          ? 'text-slate-100 hover:text-orange-300'
+                          : 'text-gray-800 hover:text-orange-600'
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-sm text-blue-500 opacity-70">
-                        {link.number}.
+                      <span className="text-sm text-rose-400 opacity-70">
+                        {link.number}
                       </span>
-                      {link.name}
+                      {'>'} {link.command}
                     </div>
-                    <span className="h-0.5 w-0 bg-blue-500 transition-[width] duration-300 group-hover:w-12 mt-1" />
+                    <span className="h-0.5 w-0 bg-orange-400 transition-[width] duration-300 group-hover:w-12 mt-1" />
                   </motion.a>
                 ))}
               </motion.div>

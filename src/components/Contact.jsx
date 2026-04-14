@@ -93,7 +93,7 @@ const Contact = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className={`absolute top-1/3 -left-20 w-80 h-80 rounded-full blur-[100px] ${
-            isDark ? 'bg-blue-500/10' : 'bg-blue-200/40'
+            isDark ? 'bg-rose-500/10' : 'bg-rose-200/40'
           }`}
           animate={{ 
             scale: [1, 1.2, 1],
@@ -105,7 +105,7 @@ const Contact = () => {
         />
         <motion.div
           className={`absolute bottom-0 -right-20 w-96 h-96 rounded-full blur-[120px] ${
-            isDark ? 'bg-purple-500/10' : 'bg-purple-200/40'
+            isDark ? 'bg-orange-500/10' : 'bg-orange-200/40'
           }`}
           animate={{ 
             scale: [1.2, 1, 1.2],
@@ -124,13 +124,12 @@ const Contact = () => {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className={`font-serif text-4xl md:text-6xl font-bold mb-4 flex items-center gap-4 ${
-            isDark ? 'text-white' : 'text-gray-900'
-          }`}>
-            <span className="gradient-text font-sans text-2xl tracking-tighter">05.</span>
-            Get In Touch
-          </h2>
-          <div className="w-24 h-1.5 bg-linear-to-r from-teal-500 to-blue-600 rounded-full"></div>
+          <div className="ansi-header">
+            <span className="ansi-header-tag">[05]</span>
+            <h2 className="ansi-header-title font-serif text-4xl md:text-6xl font-bold">
+              CONTACT_TERMINAL.IO
+            </h2>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -164,12 +163,12 @@ const Contact = () => {
                   whileHover={{ x: 10, scale: 1.02 }}
                   className={`group flex items-start gap-5 p-6 rounded-2xl border transition-[background-color,border-color,box-shadow,transform] duration-300 ${
                     isDark 
-                      ? 'bg-slate-900/50 border-white/5 hover:border-teal-500/50 hover:bg-slate-900/80 shadow-2xl' 
-                      : 'bg-white border-gray-100 hover:border-teal-500/30 shadow-xl'
+                      ? 'bg-slate-900/50 border-white/5 hover:border-rose-500/50 hover:bg-slate-900/80 shadow-2xl' 
+                      : 'bg-white border-gray-100 hover:border-rose-500/30 shadow-xl'
                   }`}
                 >
                   <div className={`p-3 rounded-xl ${
-                    isDark ? 'bg-slate-800 text-teal-400' : 'bg-teal-50 text-teal-600'
+                    isDark ? 'bg-slate-800 text-rose-300' : 'bg-rose-50 text-rose-600'
                   }`}>
                     {method.icon}
                   </div>
@@ -179,7 +178,7 @@ const Contact = () => {
                     </h4>
                     {method.link ? (
                       <a href={method.link} className={`text-lg font-medium transition-colors break-all ${
-                        isDark ? 'text-slate-200 hover:text-teal-400' : 'text-gray-700 hover:text-teal-600'
+                        isDark ? 'text-slate-200 hover:text-orange-300' : 'text-gray-700 hover:text-orange-600'
                       }`}>
                         {method.value}
                       </a>
@@ -209,8 +208,8 @@ const Contact = () => {
                     whileTap={{ scale: 0.95 }}
                     className={`p-4 rounded-xl border transition-[background-color,border-color,color,transform] ${
                       isDark 
-                        ? 'bg-slate-900/50 border-white/5 text-slate-400 hover:text-teal-400 hover:border-teal-500/50' 
-                        : 'bg-white border-gray-100 text-gray-500 hover:text-teal-600 hover:border-teal-500/30 shadow-lg'
+                        ? 'bg-slate-900/50 border-white/5 text-slate-400 hover:text-rose-300 hover:border-rose-500/50' 
+                        : 'bg-white border-gray-100 text-gray-500 hover:text-rose-600 hover:border-rose-500/30 shadow-lg'
                     }`}
                   >
                     {social.icon}
@@ -231,7 +230,7 @@ const Contact = () => {
             }`}
           >
             {/* Animated border effect */}
-            <div className="absolute inset-0 bg-linear-to-br from-teal-500 via-blue-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-sm"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-rose-500 via-orange-500 to-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-sm"></div>
             
             <div className={`relative rounded-[22px] p-8 md:p-12 h-full ${
               isDark ? 'bg-slate-900' : 'bg-white'
@@ -250,7 +249,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-[border-color] ${
-                        isDark ? 'border-white/10 text-white focus:border-teal-500' : 'border-gray-200 text-gray-900 focus:border-teal-500'
+                        isDark ? 'border-white/10 text-white focus:border-rose-500' : 'border-gray-200 text-gray-900 focus:border-rose-500'
                       }`}
                       placeholder="Enter your name"
                     />
@@ -267,7 +266,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-[border-color] ${
-                        isDark ? 'border-white/10 text-white focus:border-teal-500' : 'border-gray-200 text-gray-900 focus:border-teal-500'
+                        isDark ? 'border-white/10 text-white focus:border-rose-500' : 'border-gray-200 text-gray-900 focus:border-rose-500'
                       }`}
                       placeholder="name@email.com"
                     />
@@ -286,7 +285,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-[border-color] ${
-                      isDark ? 'border-white/10 text-white focus:border-teal-500' : 'border-gray-200 text-gray-900 focus:border-teal-500'
+                      isDark ? 'border-white/10 text-white focus:border-rose-500' : 'border-gray-200 text-gray-900 focus:border-rose-500'
                     }`}
                     placeholder="Project Inquiry"
                   />
@@ -304,7 +303,7 @@ const Contact = () => {
                     required
                     rows="4"
                     className={`w-full bg-transparent border-b-2 py-3 focus:outline-none transition-[border-color] resize-none ${
-                      isDark ? 'border-white/10 text-white focus:border-teal-500' : 'border-gray-200 text-gray-900 focus:border-teal-500'
+                      isDark ? 'border-white/10 text-white focus:border-rose-500' : 'border-gray-200 text-gray-900 focus:border-rose-500'
                     }`}
                     placeholder="Tell me about your amazing idea..."
                   ></textarea>
@@ -314,7 +313,7 @@ const Contact = () => {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-linear-to-r from-teal-500 to-blue-600 text-white font-bold py-5 rounded-2xl shadow-xl hover:shadow-blue-500/40 transition-[background-color,box-shadow,transform] duration-300 flex items-center justify-center gap-3 group"
+                  className="w-full bg-linear-to-r from-rose-500 to-orange-500 text-white font-bold py-5 rounded-2xl shadow-xl hover:shadow-rose-500/40 transition-[background-color,box-shadow,transform] duration-300 flex items-center justify-center gap-3 group"
                 >
                   Send Message
                   <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -326,8 +325,8 @@ const Contact = () => {
                     className={`text-sm text-center ${
                       submitStatus.type === 'success'
                         ? isDark
-                          ? 'text-teal-300'
-                          : 'text-teal-700'
+                          ? 'text-rose-300'
+                          : 'text-rose-700'
                         : isDark
                           ? 'text-amber-300'
                           : 'text-amber-700'

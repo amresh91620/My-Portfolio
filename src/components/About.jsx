@@ -41,17 +41,14 @@ const About = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, type: "spring" }}
-          className="flex items-center gap-4 mb-16"
+          className="mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-serif font-bold whitespace-nowrap ${
-            isDark ? 'text-white' : 'text-gray-900'
-          }`}>
-            <span className="gradient-text font-sans text-2xl md:text-3xl mr-3">01.</span>
-            About Me
-          </h2>
-          <div className={`h-[2px] w-full flex-grow rounded-full ${
-            isDark ? 'bg-slate-800' : 'bg-gray-200'
-          }`}></div>
+          <div className="ansi-header">
+            <span className="ansi-header-tag">[01]</span>
+            <h2 className="ansi-header-title text-4xl md:text-5xl font-serif font-bold whitespace-nowrap">
+              ABOUT_ME.BBS
+            </h2>
+          </div>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-16 items-center lg:items-start">
@@ -114,7 +111,7 @@ const About = () => {
               <div className={`relative w-full h-full rounded-xl overflow-hidden ${
                 isDark ? 'bg-teal-500/20' : 'bg-teal-600/20'
               }`}>
-                <div className={`absolute inset-0 bg-gradient-to-t mix-blend-overlay z-10 transition-opacity duration-300 group-hover:opacity-0 ${
+                <div className={`absolute inset-0 bg-linear-to-t mix-blend-overlay z-10 transition-opacity duration-300 group-hover:opacity-0 ${
                   isDark ? 'from-teal-900/80 to-transparent' : 'from-teal-600/50 to-transparent'
                 }`}></div>
                 <img 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase, Calendar } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
@@ -31,22 +32,19 @@ const Experience = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, type: "spring" }}
-          className="flex items-center gap-4 mb-16"
+          className="mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-serif font-bold whitespace-nowrap flex items-center gap-3 ${
-            isDark ? 'text-white' : 'text-gray-900'
-          }`}>
-            <span className="gradient-text font-sans text-2xl md:text-3xl mr-0 md:mr-3">03.</span>
-            Work Experience
-          </h2>
-          <div className={`h-[2px] w-full flex-grow rounded-full ${
-            isDark ? 'bg-slate-800' : 'bg-gray-200'
-          }`}></div>
+          <div className="ansi-header">
+            <span className="ansi-header-tag">[03]</span>
+            <h2 className="ansi-header-title text-4xl md:text-5xl font-serif font-bold whitespace-nowrap">
+              WORK_HISTORY.LOG
+            </h2>
+          </div>
         </motion.div>
 
         <div className="flex flex-col md:flex-row gap-8 lg:gap-16">
           {/* Company Tabs */}
-          <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible min-w-[200px] pb-4 md:pb-0 relative z-10 selection-tabs">
+          <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible min-w-50 pb-4 md:pb-0 relative z-10 selection-tabs">
             {experiences.map((exp, index) => (
               <button
                 key={index}
@@ -65,7 +63,7 @@ const Experience = () => {
                 {activeTab === index && (
                   <motion.div 
                     layoutId="activeTab"
-                    className={`absolute bottom-0 md:bottom-auto md:left-0 md:top-0 h-[2px] w-full md:w-[2px] md:h-full ${
+                    className={`absolute bottom-0 md:bottom-auto md:left-0 md:top-0 h-0.5 w-full md:w-0.5 md:h-full ${
                       isDark ? 'bg-teal-500' : 'bg-teal-500'
                     }`}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -87,7 +85,7 @@ const Experience = () => {
           </div>
 
           {/* Experience Details */}
-          <div className="flex-1 relative min-h-[300px]">
+          <div className="flex-1 relative min-h-75">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
@@ -129,7 +127,7 @@ const Experience = () => {
                         isDark ? 'text-slate-300 hover:bg-slate-800/50' : 'text-gray-600 hover:bg-white/60'
                       }`}
                     >
-                      <span className={`mt-1 flex-shrink-0 ${
+                      <span className={`mt-1 shrink-0 ${
                         isDark ? 'text-teal-400' : 'text-teal-500'
                       }`}>▹</span>
                       <span className="leading-relaxed">{resp}</span>

@@ -62,17 +62,14 @@ const Projects = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, type: "spring" }}
-          className="flex items-center gap-4 mb-16"
+          className="mb-16"
         >
-          <h2 className={`text-4xl md:text-5xl font-serif font-bold whitespace-nowrap flex items-center gap-3 ${
-            isDark ? 'text-white' : 'text-gray-900'
-          }`}>
-            <span className="gradient-text font-sans text-2xl md:text-3xl mr-0 md:mr-3">04.</span>
-            Featured Projects
-          </h2>
-          <div className={`h-[2px] w-full flex-grow rounded-full ${
-            isDark ? 'bg-slate-800' : 'bg-gray-200'
-          }`}></div>
+          <div className="ansi-header">
+            <span className="ansi-header-tag">[04]</span>
+            <h2 className="ansi-header-title text-4xl md:text-5xl font-serif font-bold whitespace-nowrap">
+              PROJECT_ARCHIVE.DAT
+            </h2>
+          </div>
         </motion.div>
 
         <motion.div 

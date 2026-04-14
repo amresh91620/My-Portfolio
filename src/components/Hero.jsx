@@ -68,7 +68,7 @@ const Hero = () => {
             <span className={`px-4 py-1.5 rounded-full text-sm font-medium tracking-wide shadow-sm hover:shadow-md transition-shadow cursor-default ${
               isDark ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30' : 'bg-blue-50 text-blue-600 border border-blue-200'
             }`}>
-              Available for new projects
+              SYSTEM READY :: ACCEPTING NEW PROJECTS
             </span>
           </motion.div>
 
@@ -76,13 +76,13 @@ const Hero = () => {
             <h1 className={`font-serif text-5xl md:text-6xl lg:text-7xl font-bold mb-4 transition-colors leading-tight ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}>
-              Hi, I'm <br />
+              printf("HELLO"); <br />
               <motion.span 
                 className="gradient-text inline-block"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                Amresh Gond.
+                I am Amresh Gond;
               </motion.span>
             </h1>
           </motion.div>
@@ -91,7 +91,7 @@ const Hero = () => {
             <h2 className={`font-sans text-2xl md:text-3xl font-semibold mb-6 flex items-center gap-3 ${
               isDark ? 'text-slate-300' : 'text-gray-700'
             }`}>
-              Full Stack Developer
+              FULL_STACK_DEVELOPER.cpp
             </h2>
           </motion.div>
 
@@ -99,9 +99,9 @@ const Hero = () => {
             <p className={`text-base md:text-lg max-w-xl mb-10 leading-relaxed ${
               isDark ? 'text-slate-400' : 'text-gray-600'
             }`}>
-              I architect and build exceptional, scalable web applications. 
-              Specializing in the MERN stack, I transform complex problems into 
-              elegant, high-performance digital experiences.
+              Legacy terminal vibes, modern web power. I compile ideas into production-ready
+              MERN systems, optimize APIs like low-level routines, and ship reliable products
+              that run clean on every screen.
             </p>
           </motion.div>
 
@@ -110,13 +110,13 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#projects"
-              className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 group ${
+              className={`command-btn inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 group ${
                 isDark 
                     ? 'bg-linear-to-r from-teal-500 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40' 
                     : 'bg-linear-to-r from-teal-600 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40'
               }`}
             >
-              View My Work
+              C:\&gt; run projects.exe
               <motion.span
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
@@ -129,14 +129,14 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
               href="/Amresh_Gond_Resume.pdf"
               download="Amresh_Gond_Resume.pdf"
-              className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,border-color,box-shadow,transform] duration-300 ${
+              className={`command-btn command-btn-secondary inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,border-color,box-shadow,transform] duration-300 ${
                 isDark 
                   ? 'bg-slate-800/50 text-white border border-slate-700 hover:border-slate-500 shadow-lg' 
                   : 'bg-white text-gray-900 border border-gray-200 shadow-lg hover:shadow-xl'
               }`}
             >
               <Download size={20} className="group-hover:-translate-y-1 transition-transform" />
-              Resume
+              C:\&gt; open resume.txt
             </motion.a>
           </motion.div>
 
@@ -149,7 +149,7 @@ const Hero = () => {
                     ? 'bg-slate-900/60 border-slate-700 text-slate-300'
                     : 'bg-white/80 border-gray-200 text-gray-700'
                 }`}
-              >
+                  >
                 {badge}
               </span>
             ))}
@@ -188,7 +188,7 @@ const Hero = () => {
                   <motion.div whileHover={{ scale: 1.2 }} className="w-3 h-3 rounded-full bg-yellow-500 cursor-pointer"></motion.div>
                   <motion.div whileHover={{ scale: 1.2 }} className="w-3 h-3 rounded-full bg-green-500 cursor-pointer"></motion.div>
                 </div>
-                <p className={`text-xs font-mono font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>amresh-portfolio.js</p>
+                <p className={`text-xs font-mono font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>main.cpp</p>
                 <div className="flex gap-2">
                   <Terminal size={14} className={isDark ? 'text-slate-400' : 'text-gray-400'} />
                 </div>
@@ -198,47 +198,47 @@ const Hero = () => {
               <div className="p-6 font-mono text-sm leading-loose">
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>1</span>
-                  <p className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>const <span className={`${isDark ? 'text-white' : 'text-gray-900'}`}>developer</span> <span className={`${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>=</span> {'{'}</p>
+                  <p><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>#include</span> <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>&lt;iostream&gt;</span></p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>2</span>
-                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>name:</span> <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>'Amresh Gond'</span>,</p>
+                  <p><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>using namespace</span> <span className={`${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>std</span>;</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>3</span>
-                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>role:</span> <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>'Full Stack Developer'</span>,</p>
+                  <p><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>struct</span> <span className={`${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>Developer</span> {'{'}</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>4</span>
-                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>skills:</span> {'['}</p>
+                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>string</span> name = <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>"Amresh Gond"</span>;</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>5</span>
-                  <p className="ml-8"><span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>'React'</span>, <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>'Node.js'</span>, <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>'MongoDB'</span>,</p>
+                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>string</span> role = <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>"Full Stack Developer"</span>;</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>6</span>
-                  <p className="ml-8"><span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>'Express'</span>, <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>'PostgreSQL'</span></p>
+                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>string</span> stack[4] = {'{'}<span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>"MongoDB", "Express", "React", "Node"</span>{'}'};</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>7</span>
-                  <p className="ml-4">{']'},</p>
+                  <p>{'};'}</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>8</span>
-                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>buildAwesomeWebApps:</span> <span className={`${isDark ? 'text-blue-400' : 'text-blue-600'}`}>() {'=>'}</span> {'{'}</p>
+                  <p><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>int</span> main() {'{'}</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>9</span>
-                  <p className="ml-8"><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>return</span> <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>'Excellence delivered'</span>;</p>
+                  <p className="ml-4"><span className={`${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>Developer</span> me; cout {'<<'} <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>"Building production systems"</span>;</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>10</span>
-                  <p className="ml-4">{'}'}</p>
+                  <p className="ml-4"><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>return</span> 0;</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>11</span>
-                  <p>{'};'}</p>
+                  <p>{'}'}</p>
                 </div>
                 <div className="flex">
                   <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>12</span>
