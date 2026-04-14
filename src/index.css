@@ -345,6 +345,362 @@ h6 {
   animation: typing-noise 0.12s steps(2, end) infinite;
 }
 
+.live-terminal {
+  border: 1px solid rgba(255, 92, 104, 0.65);
+  background: rgba(10, 8, 11, 0.98);
+  padding: 0.7rem;
+}
+
+.hero-terminal-shell {
+  border: 1px solid rgba(255, 92, 104, 0.52);
+  background: rgba(8, 6, 9, 0.95);
+  box-shadow: 0 0 0 1px rgba(255, 92, 104, 0.2), 0 12px 34px rgba(0, 0, 0, 0.45);
+  padding: 0.7rem;
+}
+
+.hero-terminal-lg {
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+}
+
+#hero .overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.live-terminal-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #ffb5bc;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.65rem;
+}
+
+.command-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.55rem;
+}
+
+.command-chip {
+  border: 1px solid rgba(255, 107, 118, 0.5);
+  background: rgba(30, 15, 19, 0.95);
+  color: #ffcfd3;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.command-chip:hover {
+  border-color: rgba(255, 132, 85, 0.72);
+  color: #ffe1ca;
+}
+
+.live-terminal-log {
+  min-height: 145px;
+  max-height: 250px;
+  flex: 1;
+  overflow: auto;
+  border: 1px solid rgba(255, 92, 104, 0.28);
+  background: rgba(6, 5, 8, 0.98);
+  padding: 0.6rem;
+}
+
+.live-terminal-line {
+  color: #ffe2e5;
+  font-size: 0.82rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.live-terminal-line.is-error {
+  color: #ff8e96;
+}
+
+.live-terminal-form {
+  margin-top: 0.55rem;
+  display: flex;
+  align-items: stretch;
+  gap: 0.35rem;
+}
+
+.live-terminal-prefix {
+  color: #ffb3bc;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.45rem;
+}
+
+.live-terminal-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid rgba(255, 92, 104, 0.4);
+  background: rgba(7, 6, 9, 0.98);
+  color: #ffe2e5;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.82rem;
+}
+
+.live-terminal-input:focus {
+  outline: none;
+  border-color: rgba(255, 132, 85, 0.7);
+}
+
+.live-terminal-run {
+  border: 1px solid rgba(255, 120, 84, 0.72);
+  background: rgba(41, 19, 16, 0.95);
+  color: #ffd5c1;
+  min-height: 44px;
+  min-width: 72px;
+  padding: 0.45rem 0.7rem;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+.project-debug-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 240;
+  background: rgba(7, 6, 8, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.project-debug-shell {
+  width: min(1080px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  border: 1px solid rgba(255, 92, 104, 0.68);
+  background: rgba(12, 10, 12, 0.98);
+}
+
+.project-debug-header {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(255, 92, 104, 0.4);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.project-debug-kicker {
+  margin: 0 0 0.3rem;
+  color: #ffad82;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.project-debug-title {
+  margin: 0;
+  color: #ffe0e3;
+  font-size: clamp(1rem, 2.5vw, 1.45rem);
+}
+
+.project-debug-close {
+  border: 1px solid rgba(255, 92, 104, 0.65);
+  background: rgba(27, 14, 16, 0.96);
+  color: #ffb9c0;
+  padding: 0.35rem;
+}
+
+.project-debug-body {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.project-debug-block {
+  border: 1px solid rgba(255, 92, 104, 0.34);
+  background: rgba(17, 14, 18, 0.95);
+  padding: 0.8rem;
+}
+
+.project-debug-block h4 {
+  margin: 0 0 0.5rem;
+  color: #ffcfd4;
+  font-size: 0.9rem;
+}
+
+.project-debug-block p {
+  margin: 0.2rem 0;
+  font-size: 0.8rem;
+  color: #e7d4d8;
+}
+
+.project-case-study p {
+  line-height: 1.45;
+}
+
+.project-tree-node {
+  color: #ffbf8f !important;
+}
+
+.project-shot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.project-shot-card {
+  border: 1px solid rgba(255, 124, 85, 0.4);
+  background: rgba(15, 12, 15, 0.95);
+  padding: 0.45rem;
+}
+
+.project-shot-screen {
+  height: 72px;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #ffd8ba;
+  border: 1px dashed rgba(255, 124, 85, 0.45);
+  background: linear-gradient(135deg, rgba(255, 92, 104, 0.18), rgba(255, 146, 86, 0.14));
+  margin-bottom: 0.35rem;
+}
+
+.project-debug-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.project-debug-links a {
+  border: 1px solid rgba(255, 92, 104, 0.65);
+  background: rgba(27, 14, 16, 0.96);
+  color: #ffd3d8;
+  padding: 0.4rem 0.55rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.project-debug-footer {
+  padding: 0.8rem 1rem;
+  border-top: 1px solid rgba(255, 92, 104, 0.38);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-debug-footer button {
+  border: 1px solid rgba(255, 92, 104, 0.68);
+  background: rgba(27, 14, 16, 0.96);
+  color: #ffd3d8;
+  padding: 0.42rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+}
+
+.project-debug-footer span {
+  color: #ffb9c0;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 900px) {
+  .project-debug-body {
+    grid-template-columns: 1fr;
+  }
+
+  .project-shot-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-terminal-shell {
+    padding: 0.5rem;
+  }
+
+  .hero-terminal-lg {
+    min-height: 310px;
+  }
+
+  .live-terminal {
+    padding: 0.55rem;
+  }
+
+  .live-terminal-head {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+
+  .command-shortcuts {
+    gap: 0.28rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .command-chip {
+    font-size: 0.62rem;
+    padding: 0.2rem 0.36rem;
+  }
+
+  .live-terminal-line {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .live-terminal-log {
+    min-height: 120px;
+    max-height: 180px;
+    padding: 0.5rem;
+  }
+
+  .live-terminal-input {
+    font-size: 0.8rem;
+    min-height: 42px;
+    padding: 0.35rem 0.45rem;
+  }
+
+  .live-terminal-run {
+    min-width: 64px;
+    font-size: 0.68rem;
+    min-height: 42px;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .live-terminal-prefix {
+    font-size: 0.74rem;
+    padding: 0 0.32rem;
+  }
+
+  #hero .command-btn {
+    min-height: 42px;
+  }
+
+  .project-debug-header,
+  .project-debug-body,
+  .project-debug-footer {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-terminal-lg {
+    min-height: 340px;
+  }
+
+  .live-terminal-log {
+    min-height: 132px;
+    max-height: 205px;
+  }
+}
+
 .retro-shell .font-serif {
   font-family: var(--font-serif) !important;
 }

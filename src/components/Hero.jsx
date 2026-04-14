@@ -1,10 +1,19 @@
+import { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Terminal, Code2, Database, Mouse } from 'lucide-react';
+import { ArrowRight, Download, Terminal, Mouse } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const Hero = () => {
   const { isDark } = useTheme();
+  const commandOptions = ['help', 'about', 'skills', 'projects', 'contact', 'resume', 'clear', 'status', 'os'];
+  const [command, setCommand] = useState('');
+  const [history, setHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [terminalLines, setTerminalLines] = useState([
+    'A:\\> system online.',
+    'A:\\> type "help" for commands.'
+  ]);
 
   // Animation variants
   const containerVariants = {
@@ -27,8 +36,90 @@ const Hero = () => {
     }
   };
 
+  const appendLine = (line) => {
+    setTerminalLines((prev) => [...prev.slice(-7), line]);
+  };
+
+  const scrollToSection = (id) => {
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleTerminalCommand = (event) => {
+    event.preventDefault();
+    const input = command.trim();
+    if (!input) return;
+
+    const normalized = input.toLowerCase();
+    setHistory((prev) => [...prev, input]);
+    setHistoryIndex(-1);
+    appendLine(`A:\\> ${input}`);
+    appendLine(`[RUN] executing ${normalized}...`);
+
+    if (normalized === 'help') {
+      appendLine('commands: about | skills | projects | contact | resume | clear');
+    } else if (normalized === 'about' || normalized === 'skills' || normalized === 'projects' || normalized === 'contact') {
+      scrollToSection(normalized);
+      appendLine(`[OK] jumping to ${normalized}...`);
+    } else if (normalized === 'os' || normalized === 'status') {
+      appendLine('[OK] system stable | kernel: portfolio_os | mode: interactive');
+    } else if (normalized === 'resume') {
+      window.open('/Amresh_Gond_Resume.pdf', '_blank', 'noopener,noreferrer');
+      appendLine('[OK] opening resume...');
+    } else if (normalized === 'clear') {
+      setTerminalLines(['A:\\> terminal cleared.']);
+    } else {
+      appendLine(`[ERR] unknown command: ${input}`);
+      appendLine('[HINT] try: help | projects | contact');
+    }
+
+    setCommand('');
+  };
+
+  const handleCommandKeyDown = (event) => {
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (!history.length) return;
+      const nextIndex = historyIndex < 0 ? history.length - 1 : Math.max(0, historyIndex - 1);
+      setHistoryIndex(nextIndex);
+      setCommand(history[nextIndex]);
+      return;
+    }
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (!history.length) return;
+      if (historyIndex <= 0) {
+        setHistoryIndex(-1);
+        setCommand('');
+        return;
+      }
+      const nextIndex = historyIndex - 1;
+      setHistoryIndex(nextIndex);
+      setCommand(history[nextIndex]);
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      const current = command.trim().toLowerCase();
+      const match = commandOptions.find((item) => item.startsWith(current));
+      if (match) {
+        setCommand(match);
+      }
+    }
+  };
+
+  const runShortcut = (value) => {
+    setCommand(value);
+    const fakeEvent = { preventDefault: () => {} };
+    setTimeout(() => handleTerminalCommand(fakeEvent), 0);
+  };
+
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center py-20 px-6 overflow-hidden">
+    <section id="hero" className="relative min-h-[calc(100vh-4.5rem)] md:min-h-screen flex items-center justify-center py-24 sm:py-24 lg:py-24 px-4 sm:px-6 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -57,23 +148,22 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container mx-auto max-w-7xl relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto max-w-7xl relative z-10 w-full grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 md:gap-10 lg:gap-12 items-start">
         {/* Left text section with staggered animations */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          className="lg:pr-8 xl:pr-10 self-center"
         >
-          <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
-            <span className={`px-4 py-1.5 rounded-full text-sm font-medium tracking-wide shadow-sm hover:shadow-md transition-shadow cursor-default ${
-              isDark ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30' : 'bg-blue-50 text-blue-600 border border-blue-200'
-            }`}>
-              SYSTEM READY :: ACCEPTING NEW PROJECTS
+          <motion.div variants={itemVariants} className="mb-5">
+            <span className="inline-flex items-center text-[10px] sm:text-xs tracking-[0.12em] uppercase px-2.5 sm:px-3 py-1 border border-rose-500/40 bg-[#1a0f13]/70 whitespace-nowrap">
+              System Ready :: Interactive Mode
             </span>
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <h1 className={`font-serif text-5xl md:text-6xl lg:text-7xl font-bold mb-4 transition-colors leading-tight ${
+            <h1 className={`font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 sm:mb-4 transition-colors leading-[1.08] max-w-2xl ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}>
               printf("HELLO"); <br />
@@ -88,7 +178,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <h2 className={`font-sans text-2xl md:text-3xl font-semibold mb-6 flex items-center gap-3 ${
+            <h2 className={`font-sans text-xl sm:text-2xl md:text-3xl font-semibold mb-5 sm:mb-6 flex items-center gap-3 max-w-xl ${
               isDark ? 'text-slate-300' : 'text-gray-700'
             }`}>
               FULL_STACK_DEVELOPER.cpp
@@ -96,7 +186,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <p className={`text-base md:text-lg max-w-xl mb-10 leading-relaxed ${
+            <p className={`text-sm sm:text-base md:text-lg max-w-xl mb-8 sm:mb-10 leading-relaxed ${
               isDark ? 'text-slate-400' : 'text-gray-600'
             }`}>
               Legacy terminal vibes, modern web power. I compile ideas into production-ready
@@ -105,12 +195,12 @@ const Hero = () => {
             </p>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+          <motion.div variants={itemVariants} className="flex flex-nowrap gap-2.5 sm:gap-3 max-w-full overflow-x-auto pb-1">
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="#projects"
-              className={`command-btn inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 group ${
+              className={`command-btn inline-flex shrink-0 items-center justify-center w-auto whitespace-nowrap gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 group ${
                 isDark 
                     ? 'bg-linear-to-r from-teal-500 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40' 
                     : 'bg-linear-to-r from-teal-600 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40'
@@ -118,8 +208,7 @@ const Hero = () => {
             >
               C:\&gt; run projects.exe
               <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                whileHover={{ x: 4 }}
               >
                 <ArrowRight size={20} />
               </motion.span>
@@ -129,7 +218,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
               href="/Amresh_Gond_Resume.pdf"
               download="Amresh_Gond_Resume.pdf"
-              className={`command-btn command-btn-secondary inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,border-color,box-shadow,transform] duration-300 ${
+              className={`command-btn command-btn-secondary inline-flex shrink-0 items-center justify-center w-auto whitespace-nowrap gap-2 px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base rounded-xl font-bold transition-[background-color,border-color,box-shadow,transform] duration-300 ${
                 isDark 
                   ? 'bg-slate-800/50 text-white border border-slate-700 hover:border-slate-500 shadow-lg' 
                   : 'bg-white text-gray-900 border border-gray-200 shadow-lg hover:shadow-xl'
@@ -140,138 +229,77 @@ const Hero = () => {
             </motion.a>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-3">
-            {['MERN Specialist', 'API-First Builder', 'Responsive UI Focus'].map((badge) => (
-              <span
-                key={badge}
-                className={`px-3 py-1.5 text-xs md:text-sm rounded-full border ${
-                  isDark
-                    ? 'bg-slate-900/60 border-slate-700 text-slate-300'
-                    : 'bg-white/80 border-gray-200 text-gray-700'
-                }`}
-                  >
-                {badge}
-              </span>
-            ))}
-          </motion.div>
         </motion.div>
 
-        {/* Right visual section - Code Editor Mockup */}
+        {/* Right visual section - Interactive Terminal */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 0.8, type: "spring", bounce: 0.4, delay: 0.5 }}
-          className="hidden lg:block relative"
+          className="relative w-full lg:justify-self-end mt-6 md:mt-8 lg:mt-0 lg:pt-5"
         >
-          {/* Parallax Float container */}
           <motion.div 
-            animate={{ y: [-10, 10, -10] }}
+            animate={{ y: [-4, 4, -4] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="w-full max-w-2xl mx-auto lg:ml-auto"
           >
-            {/* Decorative elements behind the editor */}
-            <div className={`absolute -inset-1 rounded-2xl blur-xl opacity-60 ${isDark ? 'bg-linear-to-r from-teal-500 to-indigo-500' : 'bg-linear-to-r from-teal-400 to-blue-400'}`}></div>
-            
-            <motion.div 
-              whileHover={{ scale: 1.02, rotateX: 2, rotateY: -2 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              style={{ perspective: "1000px" }}
-              className={`relative rounded-2xl overflow-hidden shadow-2xl border backdrop-blur-sm ${
-                isDark ? 'bg-[#0f111a]/90 border-slate-700' : 'bg-white/95 border-gray-200'
-              }`}
-            >
-              {/* Editor Header */}
-              <div className={`flex items-center justify-between px-4 py-3 border-b ${
-                isDark ? 'bg-[#1a1d27]/90 border-slate-800' : 'bg-gray-50 border-gray-200'
-              }`}>
-                <div className="flex gap-2">
-                  <motion.div whileHover={{ scale: 1.2 }} className="w-3 h-3 rounded-full bg-red-500 cursor-pointer"></motion.div>
-                  <motion.div whileHover={{ scale: 1.2 }} className="w-3 h-3 rounded-full bg-yellow-500 cursor-pointer"></motion.div>
-                  <motion.div whileHover={{ scale: 1.2 }} className="w-3 h-3 rounded-full bg-green-500 cursor-pointer"></motion.div>
-                </div>
-                <p className={`text-xs font-mono font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>main.cpp</p>
-                <div className="flex gap-2">
-                  <Terminal size={14} className={isDark ? 'text-slate-400' : 'text-gray-400'} />
-                </div>
+            <div className="hero-terminal-shell">
+              <div className="live-terminal hero-terminal-lg">
+              <div className="live-terminal-head">
+                <Terminal size={14} />
+                <span>interactive command input</span>
               </div>
-              
-              {/* Editor Content */}
-              <div className="p-6 font-mono text-sm leading-loose">
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>1</span>
-                  <p><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>#include</span> <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>&lt;iostream&gt;</span></p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>2</span>
-                  <p><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>using namespace</span> <span className={`${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>std</span>;</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>3</span>
-                  <p><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>struct</span> <span className={`${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>Developer</span> {'{'}</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>4</span>
-                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>string</span> name = <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>"Amresh Gond"</span>;</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>5</span>
-                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>string</span> role = <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>"Full Stack Developer"</span>;</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>6</span>
-                  <p className="ml-4"><span className={`${isDark ? 'text-slate-300' : 'text-slate-600'}`}>string</span> stack[4] = {'{'}<span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>"MongoDB", "Express", "React", "Node"</span>{'}'};</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>7</span>
-                  <p>{'};'}</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>8</span>
-                  <p><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>int</span> main() {'{'}</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>9</span>
-                  <p className="ml-4"><span className={`${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}>Developer</span> me; cout {'<<'} <span className={`${isDark ? 'text-green-400' : 'text-green-600'}`}>"Building production systems"</span>;</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>10</span>
-                  <p className="ml-4"><span className={`${isDark ? 'text-pink-400' : 'text-pink-600'}`}>return</span> 0;</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>11</span>
-                  <p>{'}'}</p>
-                </div>
-                <div className="flex">
-                  <span className={`w-8 select-none ${isDark ? 'text-slate-600' : 'text-gray-300'}`}>12</span>
-                  <div className="flex items-center mt-2 ml-1">
-                    <span className={`w-2 h-4 animate-pulse inline-block ${isDark ? 'bg-blue-400' : 'bg-blue-600'}`}></span>
-                  </div>
-                </div>
+              <div className="command-shortcuts" aria-label="Quick commands">
+                {['help', 'projects', 'contact', 'resume'].map((quick) => (
+                  <button key={quick} type="button" onClick={() => runShortcut(quick)} className="command-chip">
+                    {quick}
+                  </button>
+                ))}
               </div>
-            </motion.div>
-            
-            {/* Decorative Floating Badges */}
-            <motion.div 
-              animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              whileHover={{ scale: 1.1 }}
-              className={`absolute -right-8 top-16 p-4 rounded-2xl shadow-2xl backdrop-blur-xl border ${
-                isDark ? 'bg-slate-800/80 border-slate-600 text-teal-400 shadow-teal-500/20' : 'bg-white/90 border-gray-100 text-teal-600 shadow-teal-500/10'
-              }`}
-            >
-              <Code2 size={28} />
-            </motion.div>
-            
-            <motion.div 
-              animate={{ y: [0, 15, 0], rotate: [0, -5, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-              whileHover={{ scale: 1.1 }}
-              className={`absolute -left-8 bottom-16 p-4 rounded-2xl shadow-2xl backdrop-blur-xl border ${
-                isDark ? 'bg-slate-800/80 border-slate-600 text-indigo-400 shadow-indigo-500/20' : 'bg-white/90 border-gray-100 text-indigo-600 shadow-indigo-500/10'
-              }`}
-            >
-              <Database size={28} />
-            </motion.div>
+              <div className="live-terminal-log">
+                {terminalLines.map((line, idx) => (
+                  <p key={`${line}-${idx}`} className={`live-terminal-line ${line.includes('[ERR]') ? 'is-error' : ''}`}>
+                    {line}
+                  </p>
+                ))}
+              </div>
+              <form onSubmit={handleTerminalCommand} className="live-terminal-form">
+                <label htmlFor="heroCommand" className="sr-only">
+                  Terminal Command
+                </label>
+                <span className="live-terminal-prefix">A:\\&gt;</span>
+                <input
+                  id="heroCommand"
+                  value={command}
+                  onChange={(event) => setCommand(event.target.value)}
+                  onKeyDown={handleCommandKeyDown}
+                  className="live-terminal-input"
+                  placeholder="help (Tab autocomplete, ArrowUp history)"
+                  autoComplete="off"
+                  autoFocus
+                />
+                <button type="submit" className="live-terminal-run">
+                  run
+                </button>
+              </form>
+              </div>
+            </div>
           </motion.div>
+
+          <div className="mt-5 sm:mt-6 w-full max-w-2xl mx-auto lg:ml-auto flex flex-nowrap gap-2 sm:gap-2.5 overflow-x-auto pb-1">
+            {['MERN Specialist', 'API-First Builder', 'Responsive UI Focus'].map((badge) => (
+              <span
+                key={badge}
+                className={`shrink-0 whitespace-nowrap px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs md:text-sm rounded-full border ${
+                  isDark
+                    ? 'bg-slate-900/60 border-slate-700 text-slate-300'
+                    : 'bg-white/80 border-gray-200 text-gray-700'
+                }`}
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
 

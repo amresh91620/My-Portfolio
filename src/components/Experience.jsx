@@ -23,7 +23,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className={`py-20 px-6 transition-colors duration-300 ${
+    <section id="experience" className={`py-24 px-6 transition-colors duration-300 ${
       isDark ? 'bg-slate-900/30' : 'bg-gray-50'
     }`}>
       <div className="container mx-auto max-w-7xl">

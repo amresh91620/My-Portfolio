@@ -59,7 +59,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 px-6 relative">
+    <section id="skills" className="py-24 px-6 relative">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className={`absolute top-1/2 left-1/4 w-96 h-96 rounded-full blur-[100px] ${
@@ -110,7 +110,7 @@ const Skills = () => {
             >
               {/* Animated background glow on hover */}
               <div className={`absolute -inset-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10 ${
-                isDark ? 'bg-gradient-to-br from-teal-500/20 to-blue-500/20' : 'bg-gradient-to-br from-teal-500/10 to-blue-500/10'
+                isDark ? 'bg-linear-to-br from-teal-500/20 to-blue-500/20' : 'bg-linear-to-br from-teal-500/10 to-blue-500/10'
               }`} />
               
               <div className="relative z-10 w-full h-full flex flex-col">
