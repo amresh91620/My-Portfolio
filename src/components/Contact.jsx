@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Linkedin, Github, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Linkedin, Github } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const Contact = () => {
@@ -11,13 +11,36 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+
+    try {
+      const subject = encodeURIComponent(`[Portfolio] ${formData.subject}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+
+      window.location.href = `mailto:amresh91620@gmail.com?subject=${subject}&body=${body}`;
+
+      setSubmitStatus({
+        type: 'success',
+        message: 'Your mail draft is ready. Please click send in your email app.'
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Something went wrong. Please email me directly at amresh91620@gmail.com.'
+      });
+    }
   };
 
   const handleChange = (e) => {
+    if (submitStatus.message) {
+      setSubmitStatus({ type: '', message: '' });
+    }
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -107,7 +130,7 @@ const Contact = () => {
             <span className="gradient-text font-sans text-2xl tracking-tighter">05.</span>
             Get In Touch
           </h2>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full"></div>
+          <div className="w-24 h-1.5 bg-linear-to-r from-teal-500 to-blue-600 rounded-full"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
@@ -208,7 +231,7 @@ const Contact = () => {
             }`}
           >
             {/* Animated border effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-teal-500 via-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-sm"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-teal-500 via-blue-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-sm"></div>
             
             <div className={`relative rounded-[22px] p-8 md:p-12 h-full ${
               isDark ? 'bg-slate-900' : 'bg-white'
@@ -291,11 +314,28 @@ const Contact = () => {
                   type="submit"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-teal-500 to-blue-600 text-white font-bold py-5 rounded-2xl shadow-xl hover:shadow-blue-500/40 transition-[background-color,box-shadow,transform] duration-300 flex items-center justify-center gap-3 group"
+                  className="w-full bg-linear-to-r from-teal-500 to-blue-600 text-white font-bold py-5 rounded-2xl shadow-xl hover:shadow-blue-500/40 transition-[background-color,box-shadow,transform] duration-300 flex items-center justify-center gap-3 group"
                 >
                   Send Message
                   <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </motion.button>
+
+                {submitStatus.message && (
+                  <p
+                    aria-live="polite"
+                    className={`text-sm text-center ${
+                      submitStatus.type === 'success'
+                        ? isDark
+                          ? 'text-teal-300'
+                          : 'text-teal-700'
+                        : isDark
+                          ? 'text-amber-300'
+                          : 'text-amber-700'
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </p>
+                )}
               </form>
             </div>
           </motion.div>

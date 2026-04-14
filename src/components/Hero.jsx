@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Terminal, Code2, Database } from 'lucide-react';
+import { ArrowRight, Download, Terminal, Code2, Database, Mouse } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const Hero = () => {
@@ -43,7 +44,7 @@ const Hero = () => {
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className={`absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[120px] ${
+          className={`absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[120px] ${
             isDark ? 'bg-indigo-500/10' : 'bg-indigo-400/20'
           }`}
           animate={{ 
@@ -111,8 +112,8 @@ const Hero = () => {
               href="#projects"
               className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 group ${
                 isDark 
-                  ? 'bg-gradient-to-r from-teal-500 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40' 
-                  : 'bg-gradient-to-r from-teal-600 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40'
+                    ? 'bg-linear-to-r from-teal-500 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40' 
+                    : 'bg-linear-to-r from-teal-600 to-blue-600 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40'
               }`}
             >
               View My Work
@@ -138,6 +139,21 @@ const Hero = () => {
               Resume
             </motion.a>
           </motion.div>
+
+          <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-3">
+            {['MERN Specialist', 'API-First Builder', 'Responsive UI Focus'].map((badge) => (
+              <span
+                key={badge}
+                className={`px-3 py-1.5 text-xs md:text-sm rounded-full border ${
+                  isDark
+                    ? 'bg-slate-900/60 border-slate-700 text-slate-300'
+                    : 'bg-white/80 border-gray-200 text-gray-700'
+                }`}
+              >
+                {badge}
+              </span>
+            ))}
+          </motion.div>
         </motion.div>
 
         {/* Right visual section - Code Editor Mockup */}
@@ -153,7 +169,7 @@ const Hero = () => {
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           >
             {/* Decorative elements behind the editor */}
-            <div className={`absolute -inset-1 rounded-2xl blur-xl opacity-60 ${isDark ? 'bg-gradient-to-r from-teal-500 to-indigo-500' : 'bg-gradient-to-r from-teal-400 to-blue-400'}`}></div>
+            <div className={`absolute -inset-1 rounded-2xl blur-xl opacity-60 ${isDark ? 'bg-linear-to-r from-teal-500 to-indigo-500' : 'bg-linear-to-r from-teal-400 to-blue-400'}`}></div>
             
             <motion.div 
               whileHover={{ scale: 1.02, rotateX: 2, rotateY: -2 }}
@@ -258,6 +274,20 @@ const Hero = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      <motion.a
+        href="#about"
+        aria-label="Scroll to About section"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.1, duration: 0.5 }}
+        className={`absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2 text-xs tracking-[0.2em] uppercase ${
+          isDark ? 'text-slate-400 hover:text-teal-300' : 'text-gray-500 hover:text-teal-700'
+        } transition-colors`}
+      >
+        <Mouse size={14} />
+        Scroll
+      </motion.a>
     </section>
   );
 };
